@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page 2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Data from Page 1</h1>
+  
+  <p id="displayData">No data entered yet.</p>
+
+  <script>
+    // Retrieve data from localStorage
+    var savedData = localStorage.getItem('userData');
+    
+    if (savedData) {
+      document.getElementById('displayData').textContent = savedData;
+    } else {
+      document.getElementById('displayData').textContent = "No data found!";
+    }
+  </script>
+</body>
+</html>
