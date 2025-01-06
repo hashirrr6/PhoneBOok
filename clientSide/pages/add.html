@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <title>new contact</title>
     <link href="https://fonts.googleapis.com/css2?family=Zeyada&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search" />
-    <!-- <link rel="stylesheet" href="css/index.css"> -->
+    <!-- <link rel="stylesheet" href="css/index.css"> 
     <link rel="stylesheet" href="../css/add.css">
     <link rel="stylesheet" href="../index.html">
 </head>
@@ -36,14 +36,55 @@
             </div>
             <div class="btn">
                 <button>Clear</button>
-                <button onclick="details()">Save</button>
+                <button onclick="fetchUsers()">Save</button>
             </div>
         </div>
         </div>
-        <!-- <div class="detailss" id="detailss"> -->
 
     </div>
     <script src="../js/index.js"></script>
     
+</body>
+</html> 
+<!--  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Contact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Zeyada&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search" />
+    <link rel="stylesheet" href="../css/add.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="go-back">
+                <a href="../index.html"><img src="../assets/back.png" alt="Go Back"></a>
+                <h4>Go back to list</h4>
+            </div>
+            <div class="main-head">
+                <h1>New Contact</h1>
+                <img src="../assets/directory.png" alt="Directory">
+            </div>
+            <div class="info">
+                <div class="icon">
+                    <img class="hov" src="../assets/add-profile.png" alt="Add Profile">
+                </div>
+                <div class="details">
+                    <input type="text" placeholder="Contact Name" id="name">
+                    <input type="text" placeholder="Phone Number" id="phone">
+                    <input type="text" placeholder="Email" id="email">
+                    <input type="text" placeholder="Address" id="address">
+                </div>
+            </div>
+            <div class="btn">
+                <button type="button" onclick="clearForm()">Clear</button>
+                <button type="button" onclick="saveContact()">Save</button>
+            </div>
+        </div>
+    </div>
+    <script src="../js/index.js"></script>
 </body>
 </html>

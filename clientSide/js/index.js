@@ -1,31 +1,112 @@
+// Fetch users from the API
+async function fetchUsers() {
+  try {
+      const response = await fetch("/api/getuser");
+      const users = await response.json();
+      displayUsers(users);
+  } catch (error) {
+      console.error("Error fetching users:", error);
+  }
+}
 
-
-
-
-
-function details(){
-
+// Display the users in the grid
+function displayUsers(users) {
+  const grid = document.querySelector(".grid");
   
-    let name=document.getElementById("name").value;
-    let phone=document.getElementById("phone").value;
+  // Ensure grid exists before trying to modify it
+  if (!grid) {
+      console.error("Grid element not found.");
+      return;
+  }
+
+  grid.innerHTML = ""; // Clear existing users
+  users.forEach(user => {
+      const userDiv = document.createElement("div");
+      userDiv.classList.add("user");
+      userDiv.innerHTML = `
+          <h3>${user.name}</h3>
+          <p>Phone: ${user.phone}</p>
+          <p>Email: ${user.email}</p>
+      `;
+      grid.appendChild(userDiv);
+  });
+}
+
+// Call the function to load users when the page loads
+document.addEventListener("DOMContentLoaded", fetchUsers);
+// Fetch users from the API
+async function fetchUsers() {
+    try {
+        const response = await fetch("/api/getuser");
+        const users = await response.json();
+        displayUsers(users);
+    } catch (error) {
+        console.error("Error fetching users:", error);
+    }
+}
+
+// Display the users in the grid
+function displayUsers(users) {
+    const grid = document.querySelector(".grid");
     
-    // console.log(name,phone);
+    // Ensure grid exists before trying to modify it
+    if (!grid) {
+        console.error("Grid element not found.");
+        return;
+    }
 
-   nameValue=document.createElement('h1');
-   phoneValue= document.createElement('h3');
+    grid.innerHTML = ""; // Clear existing users
+    users.forEach(user => {
+        const userDiv = document.createElement("div");
+        userDiv.classList.add("user");
+        userDiv.innerHTML = `
+            <h3>${user.name}</h3>
+            <p>Phone: ${user.phone}</p>
+            <p>Email: ${user.email}</p>
+        `;
+        grid.appendChild(userDiv);
+    });
+}
 
- nameValue.textContent=`NAME:${name}`;
- phoneValue.textContent=`PHONE:${phone}`;
+// Call the function to load users when the page loads
+document.addEventListener("DOMContentLoaded", fetchUsers);
 
- console.log(nameValue,phoneValue);
- 
- 
+// Save contact
+async function saveContact() {
+  const name = document.getElementById("name").value;
+  const phone = document.getElementById("phone").value;
+  const email = document.getElementById("email").value;
+  const address = document.getElementById("address").value;
 
-//  document.getElementById("display").appendChild(nameValue);
-//  document.getElementById("display").appendChild(phoneValue);
- alert("Saved Success Fully :)")
+  // Validate fields
+  if (!name || !phone || !email || !address) {
+      alert("All fields are required.");
+      return;
+  }
 
-//  setTimeout(function() {
-//     window.location.href = "../index.html"; 
-// }, 2000);
+  const user = { name, phone, email, address };
+
+  try {
+      const response = await fetch("/api/adduser", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(user)
+      });
+
+      const result = await response.json();
+      alert(result.msg);
+      if (response.status === 200) {
+          window.location.href = "../index.html"; // Redirect back to the main page
+      }
+  } catch (error) {
+      console.error("Error saving user:", error);
+  }
+}
+
+// Clear form
+function clearForm() {
+  document.getElementById("name").value = "";
+  document.getElementById("phone").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("address").value = "";
 }
